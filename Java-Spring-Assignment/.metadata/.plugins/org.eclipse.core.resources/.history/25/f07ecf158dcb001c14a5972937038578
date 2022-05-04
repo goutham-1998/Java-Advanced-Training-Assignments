@@ -1,0 +1,75 @@
+package com.shoppingcart.app.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shoppingcart.app.Entity.Product;
+import com.shoppingcart.app.repo.ProductRepository;
+
+
+
+@Service
+public class ProductService {
+	
+	@Autowired
+	private ProductRepository pRepo;
+	
+	
+	//for adding product
+	public Product addProduct(Product product)
+	{
+		return pRepo.save(product);
+	}
+	
+	//for viewing all products
+	
+	public List<Product> getAllProducts()
+	{
+		return pRepo.findAll();
+	}
+	
+	//Finding By ID
+	public Product findById(Long id)
+	{
+		
+		if(pRepo.findById(id).isPresent())
+		{
+			return pRepo.findById(id).get();
+		}
+		else
+		{
+			return null;
+		}
+		
+		}
+	//Updating By ID
+	public Product updateProduct(Long id, Product product) {
+
+		if (pRepo.findById(id).isPresent()) {
+
+			Product old = pRepo.findById(id).get();
+			old.setName(product.getName());
+			old.setPrice(product.getPrice());
+			old.setQuantity(product.getQuantity());
+
+			return pRepo.save(old);
+		} 
+		else
+			return null;
+	}
+	
+	
+	//Deleting By ID
+public boolean deleteUser(Long id) {
+		
+		if (pRepo.findById(id).isPresent()) {
+			pRepo.deleteById(id);
+			return true;
+		}
+		else
+			return false;
+	}
+	
+}

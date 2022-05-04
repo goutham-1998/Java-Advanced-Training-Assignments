@@ -1,0 +1,25 @@
+package com.shoppingcart.app.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shoppingcart.app.Entity.Product;
+import com.shoppingcart.app.repo.ProductRepository;
+
+@Service
+public class ProductService {
+	
+	@Autowired
+	private ProductRepository pRepo;
+	
+	
+	//for adding product
+	public Product addProduct(Product product)
+	{
+		return pRepo.save(product);
+	}
+	
+	//for viewing all products
+	
+
+}

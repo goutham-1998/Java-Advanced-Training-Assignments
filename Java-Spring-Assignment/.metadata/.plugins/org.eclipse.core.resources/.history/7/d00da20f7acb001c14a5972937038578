@@ -1,0 +1,5 @@
+package com.shoppingcart.app.repo;
+
+public class ProductRepository {
+
+}
